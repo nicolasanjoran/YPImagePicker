@@ -209,6 +209,10 @@ class YPVideoCaptureHelper: NSObject {
     
     private func setupCaptureSession() {
         session.beginConfiguration()
+
+        // make sure the sesson doesn't stop the current media playback
+        session.automaticallyConfiguresApplicationAudioSession = false
+        
         let cameraPosition: AVCaptureDevice.Position = YPConfig.usesFrontCamera ? .front : .back
         let aDevice = AVCaptureDevice.deviceForPosition(cameraPosition)
         
